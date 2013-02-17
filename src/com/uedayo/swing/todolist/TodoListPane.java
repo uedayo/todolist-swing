@@ -37,6 +37,8 @@ public class TodoListPane extends JPanel {
         removeButton = new JButton("削除");
         
         addButton.addActionListener(new AddActionHandler());
+        modifyButton.addActionListener(new ModifyActionHandler());
+        removeButton.addActionListener(new RemoveActionHandler());
         
         buttonPanel.add(addButton);
         buttonPanel.add(modifyButton);
@@ -52,6 +54,32 @@ public class TodoListPane extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             todoListModel.addElement(todoInputField.getText());
+        }
+        
+    }
+
+    private class ModifyActionHandler implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(todoList.getSelectedIndices().length != 1) {
+                return;
+            }
+            
+            todoListModel.set(todoList.getSelectedIndex(), todoInputField.getText());
+        }
+        
+    }
+
+    private class RemoveActionHandler implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(todoList.getSelectedIndices().length != 1) {
+                return;
+            }
+
+            todoListModel.set(todoList.getSelectedIndex(), null);
         }
         
     }
