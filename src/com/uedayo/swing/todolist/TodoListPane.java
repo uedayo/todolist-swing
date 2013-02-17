@@ -13,6 +13,9 @@ import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+/**
+ * Todoリスト
+ */
 public class TodoListPane extends JPanel {
 
     private DefaultListModel todoListModel;
@@ -21,8 +24,9 @@ public class TodoListPane extends JPanel {
     private JButton addButton;
     private JButton modifyButton;
     private JButton removeButton;
+    
     /**
-     * @param args
+     * コンストラクタ
      */
     public TodoListPane() {
         super(new BorderLayout());
@@ -52,6 +56,9 @@ public class TodoListPane extends JPanel {
         add(buttonPanel, BorderLayout.SOUTH);
     }
 
+    /**
+     * 追加アクション
+     */
     private class AddActionHandler implements ActionListener{
 
         @Override
@@ -61,6 +68,9 @@ public class TodoListPane extends JPanel {
         
     }
 
+    /**
+     * 修正アクション
+     */
     private class ModifyActionHandler implements ActionListener{
 
         @Override
@@ -74,6 +84,9 @@ public class TodoListPane extends JPanel {
         
     }
 
+    /**
+     * 削除アクション
+     */
     private class RemoveActionHandler implements ActionListener{
 
         @Override
@@ -82,11 +95,16 @@ public class TodoListPane extends JPanel {
                 return;
             }
 
+            doLongTask();
             todoListModel.set(todoList.getSelectedIndex(), null);
         }
         
     }
     
+    /**
+     * リストを選択した際のアクション
+     * - 入力欄に反映する
+     */
     private class TodoListSelectionHandler implements ListSelectionListener{
 
         @Override
@@ -99,5 +117,16 @@ public class TodoListPane extends JPanel {
             todoInputField.setText((String) todoList.getSelectedValue());
         }
         
+    }
+    
+    /**
+     * 時間のかかるタスク
+     */
+    private void doLongTask() {
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

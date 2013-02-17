@@ -37,17 +37,26 @@ public class Main {
         showMain();
     }
 
+    /**
+     * メインフレームの作成
+     */
     private static void createMain() {
         mainFrame = new JFrame("ToDoリスト");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    /**
+     * todoリストパネルを追加
+     */
     private static void addTodoListPane() {
         Container contentPane = mainFrame.getContentPane();
         JComponent newContentPane = new TodoListPane();
         contentPane.add(newContentPane, BorderLayout.CENTER);
     }
 
+    /**
+     * メインフレームの描画
+     */
     private static void showMain() {
         mainFrame.pack();
         mainFrame.setVisible(true);
