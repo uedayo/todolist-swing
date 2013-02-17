@@ -92,6 +92,7 @@ public class TodoListPane extends JPanel {
                 return;
             }
 
+            setButtonsEnabled(false);
             Thread removeThread = new RemoveThread(todoList.getSelectedIndex());
             removeThread.start();
         }
@@ -141,8 +142,18 @@ public class TodoListPane extends JPanel {
                 @Override
                 public void run() {
                     todoListModel.remove(index);
+                    setButtonsEnabled(true);
                 }
             });
         }
+    }
+    
+    /**
+     * ボタンの状態を変更する
+     */
+    private void setButtonsEnabled(boolean enabled) {
+        addButton.setEnabled(enabled);
+        modifyButton.setEnabled(enabled);
+        removeButton.setEnabled(enabled);
     }
 }
