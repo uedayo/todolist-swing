@@ -1,3 +1,4 @@
+
 package com.uedayo.swing.todolist;
 
 import java.awt.BorderLayout;
@@ -10,17 +11,17 @@ import javax.swing.SwingUtilities;
 public class Main {
 
     static JFrame mainFrame;
-    
+
     /**
      * @param args
      */
     public static void main(String[] args) {
         // イベントディスパッチスレッドかどうかの確認
         System.out.println("main: " + SwingUtilities.isEventDispatchThread());
-        
+
         // 非同期で実行
         SwingUtilities.invokeLater(new Runnable() {
-            
+
             @Override
             public void run() {
                 showTodoList();
