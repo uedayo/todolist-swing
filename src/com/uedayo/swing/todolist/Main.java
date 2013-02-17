@@ -15,6 +15,8 @@ public class Main {
      * @param args
      */
     public static void main(String[] args) {
+        // イベントディスパッチスレッドかどうかの確認
+        System.out.println("main: " + SwingUtilities.isEventDispatchThread());
         
         // 非同期で実行
         SwingUtilities.invokeLater(new Runnable() {
@@ -27,6 +29,9 @@ public class Main {
     }
 
     private static void showTodoList() {
+        // イベントディスパッチスレッドかどうかの確認
+        System.out.println("showTodoList: " + SwingUtilities.isEventDispatchThread());
+
         createMain();
         addTodoListPane();
         showMain();

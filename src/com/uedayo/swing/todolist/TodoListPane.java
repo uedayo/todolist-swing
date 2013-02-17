@@ -10,6 +10,8 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class TodoListPane extends JPanel {
 
@@ -27,6 +29,7 @@ public class TodoListPane extends JPanel {
         
         todoListModel = new DefaultListModel();
         todoList = new JList(todoListModel);
+        todoList.addListSelectionListener(new TodoListSelectionHandler());
         JScrollPane listScrollPane = new JScrollPane(todoList);
         
         todoInputField = new JTextField();
@@ -80,6 +83,20 @@ public class TodoListPane extends JPanel {
             }
 
             todoListModel.set(todoList.getSelectedIndex(), null);
+        }
+        
+    }
+    
+    private class TodoListSelectionHandler implements ListSelectionListener{
+
+        @Override
+        public void valueChanged(ListSelectionEvent e) {
+            
+            if(todoList.getSelectedIndices().length != 1) {
+                return;
+            }
+            
+            todoInputField.setText((String) todoList.getSelectedValue());
         }
         
     }
